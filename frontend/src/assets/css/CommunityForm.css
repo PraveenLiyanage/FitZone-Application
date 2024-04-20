@@ -1,0 +1,115 @@
+section {
+    padding: 8%;
+    background-color: #f8f9fa;
+  }
+  
+  .left-section {
+    max-width: 600px;
+    width: 50%; /* Adjust as needed */
+  }
+  
+  .right-section {
+    width: calc(50% - 20px); /* Adjust as needed */
+  }
+  
+  
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  textarea {
+    height: 150px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff5050;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  button:hover {
+    background-color: #ff834c;
+  }
+  
+  .btn {
+    display: inline-block;
+    margin-top: 10px;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  .topic {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .topic:before {
+    content: attr(data-content);
+  }
+  
+  .editing .topic:before {
+    content: "Edit Community Post";
+  }
+  
+  .adding .topic:before {
+    content: "Add Community Post";
+  }
+  
+  h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
