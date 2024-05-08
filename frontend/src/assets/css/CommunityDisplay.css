@@ -1,6 +1,10 @@
-section {
+.secdisplay {
     padding: 8%;
     background-color: #f8f9fa;
+    /* background-image: url('../images/workout.jpg'); */
+    background-size: 100%;
+    background-repeat:inherit;
+    background-position: fixed;
   }
   
   .left-section {
@@ -85,12 +89,12 @@ section {
     content: "Add Community Post";
   }
   
-  .title {
+  h2 {
     font-size: 30px;
     font-weight: bold;
     margin-top: 30px;
     margin-bottom: 30px;
-    color: #333;
+    color: #5e5e5e;
     text-align: center;
   }
   
@@ -124,9 +128,4 @@ section {
 }
 
   
-.quill-container .ql-editor {
-  height: 300px; /* Set the height of the text field */
-  width: 300px
-}
-
   

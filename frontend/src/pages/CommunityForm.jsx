@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import '../assets/css/CommunityForm.css';
 
 function CommunityForm() {
@@ -29,19 +31,32 @@ function CommunityForm() {
     e.preventDefault();
     const data = { name, description, location, title };
 
-    axios.post('http://localhost:9191/api/communities', data)
-      .then(() => {
-        console.log('Post added successfully');
-        setName('');
-        setLocation('');
-        setTitle('');
-        setDescription('');
-        fetchPosts(); // Fetch posts again to update the list
-      })
-      .catch(error => {
-        console.error('Error adding post:', error);
-        // Handle error - display error message to the user
-      });
+    if (editing && postId) {
+      axios.put(`http://localhost:9191/api/communities/${postId}`, data)
+        .then(() => {
+          console.log('Post updated successfully');
+          setEditing(false);
+          setPostId(null);
+        })
+        .catch(error => {
+          console.error('Error updating post:', error);
+        });
+    } else {
+      axios.post('http://localhost:9191/api/communities', data)
+        .then(() => {
+          console.log('Post added successfully');
+        })
+        .catch(error => {
+          console.error('Error adding post:', error);
+        });
+    }
+
+    // Reset form fields
+    setName('');
+    setLocation('');
+    setTitle('');
+    setDescription('');
+    fetchPosts(); // Fetch posts again to update the list
   };
 
   const handleEdit = (id) => {
@@ -64,46 +79,67 @@ function CommunityForm() {
       })
       .catch(error => {
         console.error('Error deleting post:', error);
-        // Handle error - display error message to the user
       });
   };
 
   return (
     <section>
       <div className="left-section">
-        <h2>Upload Your Community Post.</h2>
-        <form onSubmit={editing ? handleEdit : handleSubmit}>
+        <h2 className='title'>Share Your Workout Plans.</h2>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">Publisher Name:</label>
-            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
           </div>
           <div className="form-group">
             <label htmlFor="location">Publisher Location:</label>
-            <input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} />
+            <input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} required/>
           </div>
           <div className="form-group">
             <label htmlFor="title">Community Post Title:</label>
-            <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+            <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} required/>
           </div>
           <div className="form-group">
             <label htmlFor="description">Community Post Description:</label>
-            <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+            <div className="quill-container">
+                <ReactQuill
+                    id="description"
+                    value={description}x
+                    onChange={setDescription}
+                    placeholder="Write your workout plan here..."
+                    modules={{
+                        toolbar: [
+                            ['bold', 'italic', 'underline', 'strike'], // Basic text formatting
+                            [{ 'list': 'ordered'}, { 'list': 'bullet' }], // Ordered and unordered lists
+                            ['link', 'image', 'video'], // Link, image, and video insertion
+                            ['clean'] // Remove formatting
+                        ]
+                    }}
+                    formats={['bold', 'italic', 'underline', 'strike', 'list', 'bullet', 'link', 'image', 'video']}
+                    style={{ height: '300px' }}
+                />
+            </div>
           </div>
+          <br/>
           <div>
-            <button type="submit" className="btn">Upload Post</button>
+            <button type="submit" className="btn">{editing ? 'Update Post' : 'Upload Post'}</button>
           </div>
         </form>
       </div>
       <div>
-        <h2>Your Previous Posts</h2>
-        <div class="card-grid">
+        <h2 className='title'>Your Previous Posts</h2>
+        <div className="card-grid">
           {posts.map(post => (
-            <div class="card" key={post.id}>
+            <div className="card" key={post.id}>
               <h3>{post.title}</h3>
               <p><strong>Author:</strong> {post.name}</p>
               <p><strong>Location:</strong> {post.location}</p>
-              <p>{post.description}</p>
-              <div class="button-container">
+              <ReactQuill
+                value={post.description}
+                readOnly
+                modules={{ toolbar: false }}
+              /><br/>
+              <div className="button-container">
                 <button onClick={() => handleEdit(post.id)}>Edit</button>
                 <button onClick={() => handleDelete(post.id)}>Delete</button>
               </div>

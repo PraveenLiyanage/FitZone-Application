@@ -6,6 +6,7 @@
     color: #fff;
     padding: 2rem;
     display: flex;
+    position: fixed;
     justify-content: space-between;
     align-items: center;
   }

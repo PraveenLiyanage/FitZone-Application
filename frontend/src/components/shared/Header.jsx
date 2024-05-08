@@ -11,7 +11,7 @@ const Header = () => {
       </a>
       <nav className="nav-links">
         <a href="#user">User</a>
-        <a href="#community">Community</a>
+        <a href="/communitydis">Community</a>
         <a href="#post">Post</a>
         <a href="#signup">Sign Up</a>
         <a href="#signin">Sign In</a>
