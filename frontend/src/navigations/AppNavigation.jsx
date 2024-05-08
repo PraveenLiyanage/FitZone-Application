@@ -5,6 +5,8 @@ import CommunityForm from "../pages/CommunityForm";
 import CommunityDis from "../pages/CommunityDisplay";
 import Header from "../components/shared/Header";
 import Footer from "../components/shared/Footer";
+import Postdispaly from "../pages/Postdispaly";
+import Postform from "../pages/Postform";
 
 const AppNavigation = () => {
   return (
@@ -15,6 +17,8 @@ const AppNavigation = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/communityform" element={<CommunityForm/>} />
           <Route path="/communitydis" element={<CommunityDis/>} />
+          <Route path="/post" element={<Postdispaly/>} />
+          <Route path="/Postform" element={<Postform/>} />
         </Routes>
       </Router>
       <Footer />
