@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import '../assets/css/CommunityForm.css';
@@ -12,6 +13,7 @@ function CommunityForm() {
   const [editing, setEditing] = useState(false);
   const [postId, setPostId] = useState(null);
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPosts();
@@ -50,7 +52,8 @@ function CommunityForm() {
           console.error('Error adding post:', error);
         });
     }
-
+    alert("Workout Post Uploaded Successfully");
+    navigate('/communitydis');
     // Reset form fields
     setName('');
     setLocation('');
@@ -80,6 +83,8 @@ function CommunityForm() {
       .catch(error => {
         console.error('Error deleting post:', error);
       });
+    alert("Workout Post Deleted Successfully");
+    navigate('/communitydis');
   };
 
   return (
@@ -89,22 +94,22 @@ function CommunityForm() {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">Publisher Name:</label>
-            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
           </div>
           <div className="form-group">
             <label htmlFor="location">Publisher Location:</label>
-            <input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} required/>
+            <input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} />
           </div>
           <div className="form-group">
             <label htmlFor="title">Community Post Title:</label>
-            <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} required/>
+            <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
           </div>
           <div className="form-group">
             <label htmlFor="description">Community Post Description:</label>
             <div className="quill-container">
                 <ReactQuill
                     id="description"
-                    value={description}x
+                    value={description}
                     onChange={setDescription}
                     placeholder="Write your workout plan here..."
                     modules={{
@@ -138,6 +143,7 @@ function CommunityForm() {
                 value={post.description}
                 readOnly
                 modules={{ toolbar: false }}
+                style={{ height: '550px' }}
               /><br/>
               <div className="button-container">
                 <button onClick={() => handleEdit(post.id)}>Edit</button>

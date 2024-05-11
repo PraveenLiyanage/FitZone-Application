@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.apache.commons.io.FilenameUtils;
@@ -16,23 +17,19 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fitzone.backend.entity.Post;
 import com.fitzone.backend.repository.PostRepository;
 
-
 @Service
 public class PostService {
 
     @Autowired
     private PostRepository postRepository;
 
-    // Change the UPLOAD_DIR to be relative to the frontend project
     private static final String UPLOAD_DIR = "FitZone-Application/frontend/src/assets/uploads";
 
-    public void uploadPost(String publisherName, String location, String postTitle, MultipartFile file) throws IOException {
+    public String uploadPost(String publisherName, String location, String postTitle, MultipartFile file) throws IOException {
         String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
         
-        // Get the file extension
         String fileExtension = FilenameUtils.getExtension(fileName);
 
-        // Check if the file extension is supported
         if (!Arrays.asList("jpg", "jpeg", "png").contains(fileExtension.toLowerCase())) {
             throw new IllegalArgumentException("Unsupported file format. Please upload a jpg, jpeg, or png file.");
         }
@@ -48,12 +45,11 @@ public class PostService {
         post.setPublisherName(publisherName);
         post.setLocation(location);
         post.setPostTitle(postTitle);
-        
-        // Set the image path to the file path
-        post.setImagePath(filePath.toString());
+        post.setImagePath(fileName);
 
         try {
             postRepository.save(post);
+            return fileName;
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to save post to database");
@@ -62,5 +58,35 @@ public class PostService {
 
     public List<Post> getAllPosts() {
         return postRepository.findAll();
+    }
+
+    void deletePost(Long id){
+        postRepository.deleteById(id);
+    }
+
+    public Optional<Post> getPostById(Long id){
+        return postRepository.findById(id);
+    }
+    
+    public void updatePost(Long id, String publisherName, String location, String postTitle, MultipartFile file) throws IOException {
+        // Retrieve the existing post
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Post not found with id: " + id));
+        
+        // Update the post fields
+        post.setPublisherName(publisherName);
+        post.setLocation(location);
+        post.setPostTitle(postTitle);
+        
+        // Handle file upload if provided
+        if (file != null && !file.isEmpty()) {
+            String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+            String filePath = UPLOAD_DIR + "/" + fileName;
+            Files.copy(file.getInputStream(), Paths.get(filePath));
+            post.setImagePath(fileName);
+        }
+        
+        // Save the updated post
+        postRepository.save(post);
     }
 }

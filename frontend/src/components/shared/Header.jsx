@@ -10,9 +10,10 @@ const Header = () => {
       <img src={fitZoneLogo} alt="FitZone" className="logo" />
       </a>
       <nav className="nav-links">
-        <a href="#user">User</a>
         <a href="/communitydis">Community</a>
-        <a href="#post">Post</a>
+        <a href="/post">Post</a>
+        <a href="/Workoutdis">Workout Status</a>
+        <a href="/mealplandis">Meal Plan</a>
         <a href="#signup">Sign Up</a>
         <a href="#signin">Sign In</a>
       </nav>
