@@ -13,6 +13,8 @@ const Header = () => {
         <a href="#user">User</a>
         <a href="/communitydis">Community</a>
         <a href="/post">Post</a>
+        <a href="/Workoutdis">Workout Status</a>
+        <a href="/mealplan">Meal Plan</a>
         <a href="#signup">Sign Up</a>
         <a href="#signin">Sign In</a>
       </nav>

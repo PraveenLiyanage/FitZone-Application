@@ -7,6 +7,9 @@ import Header from "../components/shared/Header";
 import Footer from "../components/shared/Footer";
 import Postdispaly from "../pages/Postdispaly";
 import Postform from "../pages/Postform";
+import WorkoutDis from "../pages/WorkoutDetails"
+import WorkoutForm from "../pages/AddWorkouts"
+import UpdateWorkouts from "../pages/UpdateWorkouts";
 
 const AppNavigation = () => {
   return (
@@ -19,6 +22,9 @@ const AppNavigation = () => {
           <Route path="/communitydis" element={<CommunityDis/>} />
           <Route path="/post" element={<Postdispaly/>} />
           <Route path="/Postform" element={<Postform/>} />
+          <Route path="/Workoutdis" element={<WorkoutDis/>} />
+          <Route path="/Workoutform" element={<WorkoutForm/>} />
+          <Route path="/updateworkout" element={<UpdateWorkouts/>} />
         </Routes>
       </Router>
       <Footer />

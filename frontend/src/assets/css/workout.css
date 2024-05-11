@@ -1,0 +1,178 @@
+section {
+  padding: 5%;
+}
+
+/* Hide scrollbar track */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ff5050; /* Color of the scrollbar handle */
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ff5050; /* Color of the scrollbar handle on hover */
+}
+.table_details_admin {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  text-transform: capitalize;
+}
+.table_details_admin .admin_tbl_th,
+.table_details_admin .admin_tbl_td {
+  border: 2px solid #ff5050;
+  padding: 12px;
+}
+.table_details_admin .admin_tbl_th {
+  background-color: #ff5050;
+  color: white;
+  font-size: 18px;
+}
+.table_main {
+  padding: 10px 10%;
+}
+.btnbtn {
+  border-radius: 6px;
+  padding: 4px 10px;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  border: 2px solid #ff5050;
+  font-size: 20px;
+  background-color: #ff5050;
+  margin-right: 25px;
+}
+
+.btnbtn:hover {
+  background-color: #ff834c;
+}
+.btnbtndlt {
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  border: 2px solid #c20202;
+  font-size: 20px;
+  background-color: #c20202;
+  margin-right: 30px;
+}
+
+.btnbtndlt:hover {
+  background-color: white;
+  color: #c20202;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff5050;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #ff834c;
+}
+.fombox_bk {
+  background-image: url(../images/bkimg.jpeg);
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  height: 90.4vh;
+  position: fixed; /* Ensure the ::after pseudo-element positions correctly */
+}
+
+.fombox_bk::after {
+  position: absolute;
+  content: "";
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value to control the transparency */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.z_new{
+  z-index: 888;
+  top: 10%;
+  position: relative;
+}
+.form_full{
+  background-color: white;
+}
+.topic_new {
+  font-size: 35px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: white;
+}
+
+.form_box {
+  height: 90vh;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.form_lable {
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+.form_input {
+  margin: 8px 0;
+  padding: 3px 10px;
+  width: 100%;
+  border-radius: 3px;
+  border: 2px solid #ff5050;
+  font-size: 18px;
+}
+.form_full {
+  padding: 25px;
+  border-radius: 8px;
+  width: 450px;
+  border: 2px solid #ff5050;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+.topic {
+  font-size: 35px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.topicsub {
+  color: #ff834c;
+}
+.add_btnbtn {
+  display: flex;
+  margin: 0 auto;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  border: 2px solid #ff5050;
+  font-size: 20px;
+  background-color: #ff5050;
+  align-items: center;
+  justify-content: center;
+}
+
+.add_btnbtn:hover {
+  background-color: white;
+  color: #ff5050;
+}
