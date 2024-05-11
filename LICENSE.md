@@ -1,4 +1,4 @@
-Copyright © 2024 FitZone
+Copyright © 2024 FitZone Developing Team
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
