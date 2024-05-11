@@ -46,6 +46,7 @@ function CommunityForm() {
                 value={post.description}
                 readOnly
                 modules={{ toolbar: false }}
+                style={{ height: '550px' }}
               />
               <div class="button-container">
                 {/* <button onClick={() => handleEdit(post.id)}>Edit</button>

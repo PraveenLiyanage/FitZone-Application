@@ -202,7 +202,7 @@ export default function PostDisplay() {
               <CardMedia
                 component="img"
                 height="250"
-                src={`http://localhost:9191/api/posts/images/${post.imagePath}`} // Corrected image path
+                src={`http://localhost:9191/api/posts/uploads/${post.imagePath}`} // Corrected image path
                 alt="Post Image"
               />
 

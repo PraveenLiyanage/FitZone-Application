@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fitzone.backend.entity.Community;
 import com.fitzone.backend.entity.Post;
 import com.fitzone.backend.repository.PostRepository;
 
@@ -25,7 +23,7 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    private static final String UPLOAD_DIR = "D:\\SLIIT UNI\\Paf\\paf-assignment-2024-jun_we_51_team\\FitZone-Application\\frontend\\src\\assets\\uploads";
+    private static final String UPLOAD_DIR = "FitZone-Application/frontend/src/assets/uploads";
 
     public String uploadPost(String publisherName, String location, String postTitle, MultipartFile file) throws IOException {
         String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
@@ -62,33 +60,33 @@ public class PostService {
         return postRepository.findAll();
     }
 
-    void deletepost(Long id){
+    void deletePost(Long id){
         postRepository.deleteById(id);
     }
-    public Optional<Post> getpostById(Long id){
+
+    public Optional<Post> getPostById(Long id){
         return postRepository.findById(id);
     }
     
     public void updatePost(Long id, String publisherName, String location, String postTitle, MultipartFile file) throws IOException {
-    // Retrieve the existing post
-    Post post = postRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Post not found with id: " + id));
-    
-    // Update the post fields
-    post.setPublisherName(publisherName);
-    post.setLocation(location);
-    post.setPostTitle(postTitle);
-    
-    // Handle file upload if provided
-    if (file != null && !file.isEmpty()) {
-        String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-        String filePath = UPLOAD_DIR + "/" + fileName;
-        Files.copy(file.getInputStream(), Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
-        post.setImagePath(fileName);
+        // Retrieve the existing post
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Post not found with id: " + id));
+        
+        // Update the post fields
+        post.setPublisherName(publisherName);
+        post.setLocation(location);
+        post.setPostTitle(postTitle);
+        
+        // Handle file upload if provided
+        if (file != null && !file.isEmpty()) {
+            String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+            String filePath = UPLOAD_DIR + "/" + fileName;
+            Files.copy(file.getInputStream(), Paths.get(filePath));
+            post.setImagePath(fileName);
+        }
+        
+        // Save the updated post
+        postRepository.save(post);
     }
-    
-    // Save the updated post
-    postRepository.save(post);
-}
-
 }
