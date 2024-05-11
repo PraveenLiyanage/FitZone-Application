@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import '../assets/css/CommunityForm.css';
@@ -12,6 +13,7 @@ function CommunityForm() {
   const [editing, setEditing] = useState(false);
   const [postId, setPostId] = useState(null);
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPosts();
@@ -50,7 +52,8 @@ function CommunityForm() {
           console.error('Error adding post:', error);
         });
     }
-
+    alert("Workout Post Uploaded Successfully");
+    navigate('/communitydis');
     // Reset form fields
     setName('');
     setLocation('');
@@ -80,6 +83,8 @@ function CommunityForm() {
       .catch(error => {
         console.error('Error deleting post:', error);
       });
+    alert("Workout Post Deleted Successfully");
+    navigate('/communitydis');
   };
 
   return (

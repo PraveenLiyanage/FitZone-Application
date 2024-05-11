@@ -8,34 +8,38 @@ import { Link } from "react-router-dom";
 export default function WorkoutDetails() {
   const [workouts, setWorkouts] = useState([]);
 
+  const { id } = useParams();
   useEffect(() => {
-    const loadWorkouts = async () => {
-      try {
-        const response = await axios.get("http://localhost:9191/api/workouts/workout");
-        setWorkouts(response.data);
-      } catch (error) {
-        console.error("Error loading workouts:", error);
-        alert("An error occurred while loading workouts.");
-      }
-    };
-
     loadWorkouts();
   }, []);
 
+  const loadWorkouts = async () => {
+    const result = await axios.get("http://localhost:9191/api/workouts/workout");
+    setWorkouts(result.data);
+  };
+
+  // Delete workout function
   const deleteWorkouts = async (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this workout?");
+    // Display confirmation dialog
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this workout?"
+    );
     if (confirmDelete) {
       try {
+        // Send DELETE request to delete workout
         await axios.delete(`http://localhost:9191/api/workouts/workout/${id}`);
-        setWorkouts(workouts.filter((workout) => workout.id !== id));
+        // Reload workouts after successful deletion
+        loadWorkouts();
+        // Display success message
         alert("Workout deleted successfully!");
       } catch (error) {
+        // Handle any errors
         console.error("Error deleting workout:", error);
+        // Display error message
         alert("An error occurred while deleting the workout.");
       }
     }
   };
-
   return (
     <section>
     <div>
