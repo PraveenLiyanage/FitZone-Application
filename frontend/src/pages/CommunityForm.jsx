@@ -89,22 +89,22 @@ function CommunityForm() {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">Publisher Name:</label>
-            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
           </div>
           <div className="form-group">
             <label htmlFor="location">Publisher Location:</label>
-            <input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} required/>
+            <input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} />
           </div>
           <div className="form-group">
             <label htmlFor="title">Community Post Title:</label>
-            <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} required/>
+            <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
           </div>
           <div className="form-group">
             <label htmlFor="description">Community Post Description:</label>
             <div className="quill-container">
                 <ReactQuill
                     id="description"
-                    value={description}x
+                    value={description}
                     onChange={setDescription}
                     placeholder="Write your workout plan here..."
                     modules={{
