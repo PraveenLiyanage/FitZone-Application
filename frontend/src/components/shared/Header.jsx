@@ -12,7 +12,7 @@ const Header = () => {
       <nav className="nav-links">
         <a href="#user">User</a>
         <a href="/communitydis">Community</a>
-        <a href="#post">Post</a>
+        <a href="/post">Post</a>
         <a href="#signup">Sign Up</a>
         <a href="#signin">Sign In</a>
       </nav>
